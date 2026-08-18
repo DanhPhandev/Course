@@ -1,4 +1,4 @@
-package com.thesis.auth_service.utils;
+package com.thesis.common.utils;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -10,4 +10,5 @@ public class RestResponse<T> {
     private String error;
     private Object message;
     private T data;
+
 }

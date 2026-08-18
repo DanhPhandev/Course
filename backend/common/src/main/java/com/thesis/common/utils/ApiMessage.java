@@ -1,4 +1,4 @@
-package com.thesis.auth_service.utils;
+package com.thesis.common.utils;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

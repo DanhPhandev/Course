@@ -55,4 +55,16 @@ public class UserService {
     public User getUserByRefreshTokenAndEmail(String token, String email) {
         return this.userRepository.findUserByRefreshTokenAndEmail(token, email);
     }
+
+    public boolean isIdExist(long id) {
+        return userRepository.existsById(id);
+    }
+
+    public void handleDeleteUser(long id) {
+        userRepository.deleteById(id);
+    }
+
+    public void handleUpdateUser(User user) {
+        userRepository.save(user);
+    }
 }

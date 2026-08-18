@@ -1,4 +1,4 @@
-package com.thesis.auth_service.utils.response;
+package com.thesis.common.utils.response;
 
 import org.springframework.core.MethodParameter;
 import org.springframework.core.io.Resource;
@@ -9,8 +9,8 @@ import org.springframework.http.server.ServletServerHttpResponse;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseBodyAdvice;
 
-import com.thesis.auth_service.utils.ApiMessage;
-import com.thesis.auth_service.utils.RestResponse;
+import com.thesis.common.utils.ApiMessage;
+import com.thesis.common.utils.RestResponse;
 
 @RestControllerAdvice
 public class FormatRestResponse implements ResponseBodyAdvice<Object> {

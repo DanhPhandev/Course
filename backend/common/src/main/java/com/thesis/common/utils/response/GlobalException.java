@@ -1,4 +1,4 @@
-package com.thesis.auth_service.utils.response;
+package com.thesis.common.utils.response;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -7,8 +7,8 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
-import com.thesis.auth_service.utils.RestResponse;
-import com.thesis.auth_service.utils.error.ResourceNotFoundException;
+import com.thesis.common.utils.RestResponse;
+import com.thesis.common.utils.error.ResourceNotFoundException;
 
 @RestControllerAdvice
 public class GlobalException {
