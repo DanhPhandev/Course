@@ -1,9 +1,12 @@
 package com.thesis.auth_service.service;
 
+import java.util.List;
+
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.thesis.auth_service.model.LoginDTO;
+import com.thesis.auth_service.model.Role;
 import com.thesis.auth_service.model.User;
 import com.thesis.auth_service.repository.UserRepository;
 
@@ -24,9 +27,14 @@ public class UserService {
     public String handleCreateUser(LoginDTO loginDTO) {
         User user = new User();
         user.setEmail(loginDTO.getEmail());
+        user.setRole(Role.USER);
         user.setPassword(passwordEncoder.encode(loginDTO.getPassword()));
         userRepository.save(user);
         return "Đăng kí thành công";
+    }
+
+    public List<User> getAllUser() {
+        return userRepository.findAll();
     }
 
     public User getUserByEmail(String email) {
@@ -36,4 +44,15 @@ public class UserService {
         return null;
     }
 
+    public void updateUserToken(String token, String email) {
+        User currentUser = this.getUserByEmail(email);
+        if (currentUser != null) {
+            currentUser.setRefreshToken(token);
+            this.userRepository.save(currentUser);
+        }
+    }
+
+    public User getUserByRefreshTokenAndEmail(String token, String email) {
+        return this.userRepository.findUserByRefreshTokenAndEmail(token, email);
+    }
 }

@@ -1,13 +1,17 @@
 package com.thesis.auth_service.controller;
 
+import java.util.List;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.thesis.auth_service.model.LoginDTO;
+import com.thesis.auth_service.model.User;
 import com.thesis.auth_service.service.UserService;
 import com.thesis.auth_service.utils.ApiMessage;
 import com.thesis.auth_service.utils.error.ResourceNotFoundException;
@@ -29,5 +33,10 @@ public class UserController {
         }
         userService.handleCreateUser(loginDTO);
         return ResponseEntity.status(HttpStatus.CREATED).body(null);
+    }
+
+    @GetMapping("/users")
+    public ResponseEntity<List<User>> listUser() {
+        return ResponseEntity.status(HttpStatus.OK).body(userService.getAllUser());
     }
 }
