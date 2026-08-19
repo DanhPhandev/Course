@@ -13,11 +13,13 @@ import com.thesis.auth_service.repository.UserRepository;
 @Service
 public class UserService {
     private final UserRepository userRepository;
+    private final RoleService roleService;
     private final PasswordEncoder passwordEncoder;
 
-    public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder) {
+    public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder, RoleService roleService) {
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
+        this.roleService = roleService;
     }
 
     public boolean isEmailExist(String email) {
@@ -27,8 +29,8 @@ public class UserService {
     public String handleCreateUser(LoginDTO loginDTO) {
         User user = new User();
         user.setEmail(loginDTO.getEmail());
-        user.setRole(Role.USER);
         user.setPassword(passwordEncoder.encode(loginDTO.getPassword()));
+        user.setRole(roleService.getRoleById(1));
         userRepository.save(user);
         return "Đăng kí thành công";
     }
