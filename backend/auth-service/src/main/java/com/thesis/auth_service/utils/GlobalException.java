@@ -1,4 +1,4 @@
-package com.thesis.common.utils.response;
+package com.thesis.auth_service.utils;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

@@ -1,16 +1,15 @@
-package com.thesis.auth_service;
-
-import java.util.TimeZone;
+package com.thesies.problem_service;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-@SpringBootApplication()
-public class AuthServiceApplication {
+import java.util.TimeZone;
+@SpringBootApplication
+public class ProblemServiceApplication {
 
 	public static void main(String[] args) {
 		TimeZone.setDefault(TimeZone.getTimeZone("Asia/Ho_Chi_Minh"));
-		SpringApplication.run(AuthServiceApplication.class, args);
+		SpringApplication.run(ProblemServiceApplication.class, args);
 	}
 
 }
