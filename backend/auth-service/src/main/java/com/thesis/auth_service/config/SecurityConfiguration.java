@@ -29,18 +29,21 @@ import com.nimbusds.jose.util.Base64;
 
 @Configuration
 public class SecurityConfiguration {
-    String[] listWhite = { "/api/v1/auth/login", "/api/v1/auth/register", "/api/v1/auth/refresh" };
+    String[] listWhite = { "/**", "/api/v1/auth/google", "/api/v1/auth/login", "/api/v1/auth/register", "/oauth2/**",
+            "/api/v1/auth/refresh" };
     @Value("${danh.jwt.base64-secret}")
     private String jwtKey;
 
     @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+    public SecurityFilterChain securityFilterChain(HttpSecurity http,
+            OAuth2LoginSuccessHandler oAuth2LoginSuccessHandler) throws Exception {
         http
                 .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers(listWhite).permitAll()
                         .anyRequest().authenticated())
                 .oauth2ResourceServer((oauth2) -> oauth2.jwt(Customizer.withDefaults()))
+                .oauth2Login(oauth2 -> oauth2.successHandler(oAuth2LoginSuccessHandler))
                 .formLogin(form -> form.disable())
                 .httpBasic(basic -> basic.disable())
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS));

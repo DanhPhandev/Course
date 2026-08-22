@@ -5,9 +5,8 @@ import java.util.List;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import com.thesis.auth_service.model.LoginDTO;
-import com.thesis.auth_service.model.Role;
 import com.thesis.auth_service.model.User;
+import com.thesis.auth_service.model.DTO.LoginDTO;
 import com.thesis.auth_service.repository.UserRepository;
 
 @Service
@@ -33,6 +32,10 @@ public class UserService {
         user.setRole(roleService.getRoleById(1));
         userRepository.save(user);
         return "Đăng kí thành công";
+    }
+
+    public void handleSave(User user) {
+        userRepository.save(user);
     }
 
     public List<User> getAllUser() {

@@ -1,4 +1,4 @@
-package com.thesis.common.utils.response;
+package com.thesis.auth_service.utils;
 
 import org.springframework.core.MethodParameter;
 import org.springframework.core.io.Resource;

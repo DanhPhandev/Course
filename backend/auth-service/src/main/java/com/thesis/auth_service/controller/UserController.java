@@ -12,9 +12,11 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.client.RestClient;
 
-import com.thesis.auth_service.model.LoginDTO;
 import com.thesis.auth_service.model.User;
+import com.thesis.auth_service.model.DTO.LoginDTO;
+import com.thesis.auth_service.repository.UserRepository;
 import com.thesis.auth_service.service.UserService;
 import com.thesis.common.utils.ApiMessage;
 import com.thesis.common.utils.error.ResourceNotFoundException;
@@ -65,4 +67,5 @@ public class UserController {
         this.userService.handleUpdateUser(user);
         return ResponseEntity.status(HttpStatus.OK).body(null);
     }
+
 }

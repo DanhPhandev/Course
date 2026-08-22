@@ -15,10 +15,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import com.thesis.auth_service.model.LoginDTO;
-import com.thesis.auth_service.model.ResLoginDTO;
+
 import com.thesis.auth_service.model.Role;
 import com.thesis.auth_service.model.User;
+import com.thesis.auth_service.model.DTO.LoginDTO;
+import com.thesis.auth_service.model.DTO.OtherRequest;
+import com.thesis.auth_service.model.DTO.ResLoginDTO;
 import com.thesis.auth_service.service.SecurityUtil;
 import com.thesis.auth_service.service.UserService;
 import com.thesis.common.utils.ApiMessage;
@@ -73,6 +75,16 @@ public class AuthController {
                 return ResponseEntity.ok()
                                 .header(HttpHeaders.SET_COOKIE, resCookie.toString())
                                 .body(resLoginDTO);
+        }
+
+        @PostMapping("/auth/google")
+        public ResponseEntity<?> googleLogin(@RequestBody OtherRequest request) {
+                String code = request.getCode();
+                ResLoginDTO resLoginDTO = new ResLoginDTO();
+                resLoginDTO.setAccessToken(code);
+                resLoginDTO.setRefreshToken(code);
+                return ResponseEntity.ok(
+                                resLoginDTO);
         }
 
         @PostMapping("/auth/register")

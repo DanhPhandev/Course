@@ -1,4 +1,4 @@
-package com.thesis.auth_service.model;
+package com.thesis.auth_service.model.DTO;
 
 import lombok.Getter;
 import lombok.Setter;
